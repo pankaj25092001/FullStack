@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../models/user.model';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
+import { AuthRequest } from '../middlewares/auth.middleware';
 // --- REGISTER USER ---
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -96,4 +96,9 @@ export const logoutUser = async (req: Request, res: Response) => {
   // In a more advanced setup with refresh tokens, we would invalidate the refresh token here.
 
   return res.status(200).json({ message: 'User logged out successfully' });
+};
+export const getUserProfile = async (req: AuthRequest, res: Response) => {
+    // Because the 'protect' middleware ran first, we already have the user's
+    // details attached to the request object in 'req.user'.
+    res.status(200).json(req.user);
 };

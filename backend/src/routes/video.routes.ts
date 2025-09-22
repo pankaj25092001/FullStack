@@ -1,4 +1,4 @@
-backend/src/routes/video.routes.ts// src/routes/video.routes.ts
+// src/routes/video.routes.ts
 
 import { Router } from 'express';
 import { getAllVideos, getVideoById } from '../controllers/video.controller';
