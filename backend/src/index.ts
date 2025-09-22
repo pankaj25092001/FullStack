@@ -4,29 +4,27 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db';
+
+// --- Routers ---
 import userRouter from './routes/user.routes';
+import videoRouter from './routes/video.routes'; // This line must match your file path
 
-// Load environment variables from .env file
+// --- Initializations ---
 dotenv.config();
-
-// Connect to the database
 connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 // --- Middlewares ---
-// Enable CORS to allow our frontend to communicate with this backend
 app.use(cors());
-// Enable the express app to parse JSON formatted request bodies
 app.use(express.json());
 
 // --- API Routes ---
-app.get('/', (req, res) => {
-  res.send('Bade Bhai server is running! 🚀');
-});
 app.use('/api/v1/users', userRouter);
-// --- Start the Server ---
+app.use('/api/v1/videos', videoRouter);
+
+// --- Server Start ---
 app.listen(PORT, () => {
-  console.log(`✅ Server is live and listening on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
