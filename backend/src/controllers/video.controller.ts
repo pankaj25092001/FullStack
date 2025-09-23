@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import { Video } from '../models/video.model';
 import mongoose from 'mongoose';
-
+import { AuthRequest } from '../middlewares/auth.middleware';
 // --- GET ALL VIDEOS (with filtering, sorting, etc.) ---
 export const getAllVideos = async (req: Request, res: Response) => {
   try {
@@ -70,5 +70,38 @@ export const getVideoById = async (req: Request, res: Response) => {
     } catch (error) {
         console.error(`Error fetching video by ID: ${req.params.videoId}`, error);
         return res.status(500).json({ message: 'Server error while fetching video' });
+    }
+}
+export const toggleLike = async (req: AuthRequest, res: Response) => {
+    const { videoId } = req.params;
+    const userId = req.user._id;
+
+    if (!mongoose.isValidObjectId(videoId)) {
+        return res.status(400).json({ message: 'Invalid video ID' });
+    }
+
+    try {
+        const video = await Video.findById(videoId);
+        if (!video) {
+            return res.status(404).json({ message: "Video not found" });
+        }
+
+        // Check if the user's ID is already in the likes array
+        const isLiked = video.likes.includes(userId);
+
+        if (isLiked) {
+            // If they have liked it, remove their ID ($pull)
+            await Video.findByIdAndUpdate(videoId, { $pull: { likes: userId } });
+            // We can send back the updated like count
+            const updatedVideo = await Video.findById(videoId);
+            res.status(200).json({ message: "Like removed", likeCount: updatedVideo?.likes.length });
+        } else {
+            // If they have not liked it, add their ID ($addToSet prevents duplicates)
+            await Video.findByIdAndUpdate(videoId, { $addToSet: { likes: userId } });
+            const updatedVideo = await Video.findById(videoId);
+            res.status(200).json({ message: "Like added", likeCount: updatedVideo?.likes.length });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Server error while toggling like" });
     }
 }

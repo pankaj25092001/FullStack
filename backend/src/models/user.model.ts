@@ -25,11 +25,13 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required'],
     },
+     refreshToken: { type: String }
   },
   {
     // This automatically adds `createdAt` and `updatedAt` fields
     timestamps: true,
   }
+  
 );
 
 // --- Mongoose Hook: "pre-save" ---
