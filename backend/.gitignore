@@ -1,4 +1,0 @@
-# in .gitignore file
-node_modules
-.env
-dist
