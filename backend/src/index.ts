@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db';
-
+import orderRouter from './routes/order.routes';
 import userRouter from './routes/user.routes';
 import videoRouter from './routes/video.routes';
 import cartRouter from './routes/cart.routes';
@@ -28,6 +28,7 @@ app.use('/api/v1/videos', videoRouter);
 app.use('/api/v1/cart', cartRouter);
 app.use('/api/v1/payment', paymentRouter);
 app.use('/api/v1/watchlist', watchlistRouter);
+app.use('/api/v1/orders', orderRouter); 
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
