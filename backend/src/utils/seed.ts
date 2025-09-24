@@ -34,13 +34,13 @@ const seedDB = async () => {
     // --- DEFINE RAW VIDEO DATA (NO DUPLICATES) ---
     const videosData = [
       // Tech (10 Videos)
-      { youtubeVideoId: 'lnV34uLEBCI', title: "React JS Full Course", uploaderId: techUser._id, category: "Tech", price: 499 },
-      { youtubeVideoId: 'z_ab_OR_N_A', title: "Google I/O 2024 Keynote", uploaderId: techUser._id, category: "Tech", price: 299 },
-      { youtubeVideoId: '7nwni5v_A1I', title: "iPhone 16 Pro Full Review", uploaderId: techUser._id, category: "Tech", price: 199 },
+      { youtubeVideoId: 'RGOj5yH7evk', title: "Git and GitHUB", uploaderId: techUser._id, category: "Tech", price: 499 },
+      { youtubeVideoId: 'Gv9_4yMHFhI', title: "Introduction to ML", uploaderId: techUser._id, category: "Tech", price: 299 },
+      { youtubeVideoId: 'HXV3zeQKqGY', title: "SQL Full course", uploaderId: techUser._id, category: "Tech", price: 199 },
       { youtubeVideoId: 'Ke90Tje7VS0', title: "JavaScript for Beginners", uploaderId: techUser._id, category: "Tech", price: 599 },
-      { youtubeVideoId: 'H_2E01yA3eI', title: "The Quantum Computing Race", uploaderId: techUser._id, category: "Tech", price: 399 },
-      { youtubeVideoId: 'Q52b2N-40tY', title: "DevOps Full Course", uploaderId: techUser._id, category: "Tech", price: 799 },
-      { youtubeVideoId: 'bbk_wDeIu_Y', title: "Node.js & Express Full Course", uploaderId: techUser._id, category: "Tech", price: 699 },
+      //{ youtubeVideoId: 'H_2E01yA3eI', title: "The Quantum Computing Race", uploaderId: techUser._id, category: "Tech", price: 399 },
+      { youtubeVideoId: 'ofme2o29ngU', title: "MongoDB", uploaderId: techUser._id, category: "Tech", price: 799 },
+     // { youtubeVideoId: 'bbk_wDeIu_Y', title: "Node.js & Express Full Course", uploaderId: techUser._id, category: "Tech", price: 699 },
       { youtubeVideoId: 'w7ejDZ8SWv8', title: "Figma UI/UX Design Tutorial", uploaderId: techUser._id, category: "Tech", price: 499 },
       { youtubeVideoId: 'PkZNo7MFNFg', title: "Python for Data Science", uploaderId: techUser._id, category: "Tech", price: 899 },
       { youtubeVideoId: 'G3e-cpL7ofc', title: "The M1 Chip Explained", uploaderId: techUser._id, category: "Tech", price: 299 },
@@ -48,7 +48,7 @@ const seedDB = async () => {
       // Movie Trailers (11 Videos)
       { youtubeVideoId: 'u31fed_224s', title: "Oppenheimer | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 99 },
       { youtubeVideoId: '6JnN1DmbqoU', title: "Dune: Part Two | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 99 },
-      { youtubeVideoId: 'wayu3j1k_ys', title: "Kalki 2898 AD | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 149 },
+      { youtubeVideoId: 'qEVUtrk8_B4', title: "Johm Wick | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 149 },
       { youtubeVideoId: 'U2Qp5pL3ovA', title: "Joker: Folie à Deux | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 149 },
       { youtubeVideoId: 'fhr3M5_d3sE', title: "Brahmastra | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 129 },
       { youtubeVideoId: 'GY4BgdUSpbE', title: "RRR | Official Trailer", uploaderId: cinemaUser._id, category: "Movie Trailer", price: 129 },
@@ -101,7 +101,7 @@ const seedDB = async () => {
         description: `Watch the premium video: ${v.title}. Purchase now for exclusive access. A must-watch in the ${v.category} category.`,
         thumbnailUrl: `https://i.ytimg.com/vi/${v.youtubeVideoId}/maxresdefault.jpg`,
         duration: Math.floor(Math.random() * 4000) + 600, // Random duration between 10-76 mins
-        views: Math.floor(Math.random() * 15) + 1000,
+        views: Math.floor(Math.random() * 150000) + 100000,
        // likes: Math.floor(Math.random() * 100) + 1000,
         monetization: {
             type: 'premium',
