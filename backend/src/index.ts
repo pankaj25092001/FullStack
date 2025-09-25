@@ -1,5 +1,7 @@
-import express from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+//import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db';
@@ -10,7 +12,7 @@ import cartRouter from './routes/cart.routes';
 import paymentRouter from './routes/payment.routes';
 import watchlistRouter from './routes/watchlist.routes';
 
-dotenv.config();
+//dotenv.config();
 connectDB();
 
 const app = express();
