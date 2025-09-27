@@ -11,6 +11,8 @@ import videoRouter from './routes/video.routes';
 import cartRouter from './routes/cart.routes';
 import paymentRouter from './routes/payment.routes';
 import watchlistRouter from './routes/watchlist.routes';
+import aiRouter from './routes/ai.routes'; // 1. Import new AI router
+import submissionRouter from './routes/submission.routes';
 
 //dotenv.config();
 connectDB();
@@ -31,6 +33,9 @@ app.use('/api/v1/cart', cartRouter);
 app.use('/api/v1/payment', paymentRouter);
 app.use('/api/v1/watchlist', watchlistRouter);
 app.use('/api/v1/orders', orderRouter); 
+app.use('/api/v1/ai', aiRouter); // For AI features
+app.use('/api/v1/submit', submissionRouter);
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
