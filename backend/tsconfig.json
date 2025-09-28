@@ -1,20 +1,18 @@
 {
   "compilerOptions": {
-    // --- Core Settings for a Modern Node.js Project ---
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
-    // --- Project Structure ---
     "rootDir": "./src",
     "outDir": "./dist",
-
-    // --- Strictness & Best Practices ---
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    // THE FIX #2: Add this line to satisfy ts-jest
+    "isolatedModules": true
   },
-  "include": ["src/**/*"], // Tells TypeScript to only compile files inside the 'src' folder
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
+

@@ -1,37 +1,23 @@
 import dotenv from 'dotenv';
-dotenv.config();
-import express from 'express';
-//import dotenv from 'dotenv';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
+dotenv.config(); // This MUST be the first line to run
+
+import app from './app'; // We import our newly created app
 import connectDB from './config/db';
-import orderRouter from './routes/order.routes';
-import userRouter from './routes/user.routes';
-import videoRouter from './routes/video.routes';
-import cartRouter from './routes/cart.routes';
-import paymentRouter from './routes/payment.routes';
-import watchlistRouter from './routes/watchlist.routes';
 
-//dotenv.config();
-connectDB();
-
-const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.use(cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true 
-}));
-app.use(express.json());
-app.use(cookieParser());
+// This is the professional way to start the server.
+// It ensures the database is connected BEFORE we start listening for requests.
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, () => {
+      console.log(`✅ Database connected. Server is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("FATAL ERROR: Failed to start server.", error);
+    process.exit(1);
+  }
+};
 
-app.use('/api/v1/users', userRouter);
-app.use('/api/v1/videos', videoRouter);
-app.use('/api/v1/cart', cartRouter);
-app.use('/api/v1/payment', paymentRouter);
-app.use('/api/v1/watchlist', watchlistRouter);
-app.use('/api/v1/orders', orderRouter); 
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-});
+startServer();
