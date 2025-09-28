@@ -11,7 +11,7 @@ import videoRouter from './routes/video.routes';
 import cartRouter from './routes/cart.routes';
 import paymentRouter from './routes/payment.routes';
 import watchlistRouter from './routes/watchlist.routes';
-
+import commentRouter from "./routes/comment.routes";
 //dotenv.config();
 connectDB();
 
@@ -31,6 +31,7 @@ app.use('/api/v1/cart', cartRouter);
 app.use('/api/v1/payment', paymentRouter);
 app.use('/api/v1/watchlist', watchlistRouter);
 app.use('/api/v1/orders', orderRouter); 
+app.use("/api/v1/comments", commentRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);

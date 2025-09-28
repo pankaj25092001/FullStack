@@ -77,7 +77,6 @@ export const getVideoById = async (req: Request, res: Response) => {
         return res.status(500).json({ message: 'Server error while fetching video' });
     }
 };
-
 export const toggleLike = async (req: AuthRequest, res: Response) => {
     // ... same as your existing code
     const { videoId } = req.params;
